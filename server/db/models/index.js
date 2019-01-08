@@ -1,5 +1,9 @@
 const User = require('./user')
+const Product = require('./product')
 
+// Uncomment associations when all the models are defined and imported
+// Product.belongsToMany(Order)
+// Product.belongsToMany(Cart)
 /**
  * If we had any associations to make, this would be a great place to put them!
  * ex. if we had another model called BlogPost, we might say:
