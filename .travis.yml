@@ -14,14 +14,15 @@ notifications:
 install:
   - npm ci # faster, goes only from package-lock
 before_script:
-  - psql -c 'create database "boilermaker-test";' -U postgres # remember to change this name if you change it elsewhere (e.g. package.json)
+  - psql -c 'create database "saycheese-test";' -U postgres # remember to change this name if you change it elsewhere (e.g. package.json)
 
-# before_deploy:
-#   - npm run build-client # make the bundle
-#   - rm -rf node_modules # omit from the tarball, since we skip cleanup
-# deploy:
-#   skip_cleanup: true # prevents travis from deleting the build
-#   provider: heroku
-#   app: YOUR-HEROKU-APP-NAME-HERE # see README
-#   api_key:
-#     secure: YOUR-***ENCRYPTED***-API-KEY-HERE # see README
+before_deploy:
+  - npm run build-client # make the bundle
+  - rm -rf node_modules # omit from the tarball, since we skip cleanup
+deploy:
+  skip_cleanup: true # prevents travis from deleting the build
+  provider: heroku
+  app: saycheesefs # see README
+  api_key:
+    secure: vxwQH3PQqdBQPzf1/yP9h+miMcc7KEiey7LaYDNoEkoWgWw28vfmzANJSzLoktUh2symdgDaVOmhVjuPMIPYGhgwDmJjvgZO2oPj06PNRMrB98jpJ6LvPQyY0g6ReLovHrqAijp3zsuA0GJvPkcvFYJQCfES77umjYK+sDMEtMHic6PvdmWPQU51KHAz9T0sFDul0k7HmKCm3gzR/DoIz+sNDyI/GZB/TLxArTcU46N6ty/e4/8RPvJkJBzO2vvWMbL1Uvy3BgFbCuaAtp8g3odvk3p05mvvYHpUoDhZpG5hq2mHcng3300ZPII3nn7Sj+ZglAAs4HrMJfUemC5SmmspR8NRmm6zii6MLoFtDcdKdcbqoodDD2BHIluWx/mMThfx9U9856Xu6LyAAEG1hvFhZ6IEvO3uUJMimZ0U2eSjr1ghCr+10U6Q2nY5iksnESESdjohwLoX01j2t2HAGYidlpiKcZHr2pcJ5BA3PSn6reB3kmmhqmI8Tf353qYbDlsPHL7QfV4oIputIw4VctY2HiXsQoAnqBoYaz1oZA3otUxTUZKiC7rnzUWO+jfuK3v5WH4YL8qkcaDbAfCtCcN3lAao5RJ1VefKGGBmK3QfakaidxX49VncYCmT0+0lZkMgKAER/mADFpUgT2hYHAEI1heHXoYo5NiqEX74M9s=
+  # see README
