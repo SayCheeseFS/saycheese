@@ -37,7 +37,7 @@ export const getAllProducts = () => async dispatch => {
 // get single product thunk
 export const getSingleProduct = productId => async dispatch => {
   try {
-    const res = await axios.get(`/api/${productId}`)
+    const res = await axios.get(`/api/products/${productId}`)
     dispatch(gotSingleProduct(res.data || defaultProduct))
   } catch (err) {
     console.error(err)
