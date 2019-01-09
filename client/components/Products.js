@@ -1,33 +1,47 @@
 import React from 'react'
 import {Link} from 'react-router-dom'
 import {connect} from 'react-redux'
+import {fetchAllProducts} from '../store/product'
 
-const Products = ({products}) => {
-  return (
-    <div>
-      {products.map(product => {
-        return (
-          <div key={product.id}>
-            <Link to={`/products/${product.id}`}>
-              <img src={product.images[0]} />
-              <h1>{product.name}</h1>
-              <h3>{product.price}</h3>
-              <h2>Rating: {product.rating}</h2>
-            </Link>
-            <table>
-              <tr>
-                <td>
-                  <button>Add To Cart</button>
-                </td>
-              </tr>
-            </table>
-          </div>
-        )
-      })}
-    </div>
-  )
+class Products extends React.Component {
+  componentDidMount() {
+    this.props.fetchAllProducts()
+  }
+  render() {
+    console.log(this.props)
+    return (
+      <div className="ui link cards">
+        {this.props.products &&
+          this.props.products.map(product => {
+            return (
+              <div className="card" key={product.id}>
+                <Link to={`/products/${product.id}`}>
+                  <div className="ui image small">
+                    <img src={`/images/${product.imageUrl}`} />
+                  </div>
+                  <div className="content">
+                    <div className="ui header">{product.name}</div>
+                    <div className="description">
+                      Price: ${product.price / 100}
+                    </div>
+                  </div>
+                </Link>
+                <div className="extra content">
+                  <button className="ui button">Add To Cart</button>
+                </div>
+              </div>
+            )
+          })}
+      </div>
+    )
+  }
 }
 
-const mapStateToProps = ({products}) => ({products})
+const mapStateToProps = state => ({products: state.inventory.products})
+const mapDispatchToProps = dispatch => {
+  return {
+    fetchAllProducts: () => dispatch(fetchAllProducts())
+  }
+}
 
-export default connect(mapStateToProps, null)(Products)
+export default connect(mapStateToProps, mapDispatchToProps)(Products)
