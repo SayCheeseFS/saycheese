@@ -15,3 +15,6 @@ router.get('/', async (req, res, next) => {
     next(err)
   }
 })
+
+// /users/:id <-- to load specific user information.
+// /users/:id/cart    /users/:id/orders

@@ -11,11 +11,17 @@ const GOT_SINGLE_PRODUCT = 'GOT_SINGLE_PRODUCT'
 /**
  * INITIAL STATE
  */
-const defaultProduct = {products: [{}], product: {}}
+
+//CG: Please make sure that you also standardize your format for how you write objects.
+const defaultProduct = {
+  products: [], 
+  product: {}
+}
 
 /**
  * ACTION CREATORS
  */
+// CG: Corey suggestion fetch and set.
 const gotAllProducts = products => ({type: GOT_ALL_PRODUCTS, products})
 const gotSingleProduct = product => ({type: GOT_SINGLE_PRODUCT, product})
 // const removeProduct = () => ({type: REMOVE_PRODUCT})
@@ -28,6 +34,7 @@ const gotSingleProduct = product => ({type: GOT_SINGLE_PRODUCT, product})
 export const getAllProducts = () => async dispatch => {
   try {
     const res = await axios.get('/api/products')
+    //CG: This is a bug that should've been caught during review.
     dispatch(gotAllProducts(res.data || defaultProduct))
   } catch (err) {
     console.error(err)

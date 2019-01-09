@@ -3,6 +3,9 @@ import {Link} from 'react-router-dom'
 import {connect} from 'react-redux'
 
 const Products = ({products}) => {
+  // Make sure you are naming by className or id for every level of depth.
+  // className="products"
+  // className="products-card"
   return (
     <div>
       {products.map(product => {
