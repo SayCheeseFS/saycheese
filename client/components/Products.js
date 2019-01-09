@@ -8,30 +8,28 @@ class Products extends React.Component {
     this.props.fetchAllProducts()
   }
   render() {
-    console.log(this.props)
     return (
       <div className="ui link cards">
-        {this.props.products &&
-          this.props.products.map(product => {
-            return (
-              <div className="card" key={product.id}>
-                <Link to={`/products/${product.id}`}>
-                  <div className="ui image small">
-                    <img src={`/images/${product.imageUrl}`} />
-                  </div>
-                  <div className="content">
-                    <div className="ui header">{product.name}</div>
-                    <div className="description">
-                      Price: ${product.price / 100}
-                    </div>
-                  </div>
-                </Link>
-                <div className="extra content">
-                  <button className="ui button">Add To Cart</button>
+        {this.props.products.map(product => {
+          return (
+            <div className="card" key={product.id}>
+              <Link to={`/products/${product.id}`}>
+                <div className="ui image small">
+                  <img src={`/images/${product.imageUrl}`} />
                 </div>
+                <div className="content">
+                  <div className="ui header">{product.name}</div>
+                  <div className="description">
+                    Price: ${product.price / 100}
+                  </div>
+                </div>
+              </Link>
+              <div className="extra content">
+                <button className="ui button">Add To Cart</button>
               </div>
-            )
-          })}
+            </div>
+          )
+        })}
       </div>
     )
   }
