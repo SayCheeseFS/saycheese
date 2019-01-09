@@ -1,9 +1,12 @@
 const User = require('./user')
 const Product = require('./product')
+const Order = require('./order')
+const Order_Product = require('./order_product')
 
-// Uncomment associations when all the models are defined and imported
-// Product.belongsToMany(Order)
-// Product.belongsToMany(Cart)
+Product.belongsToMany(Order, {through: Order_Product})
+Order.belongsTo(User)
+User.hasMany(Order)
+Order.belongsToMany(Product, {through: Order_Product})
 /**
  * If we had any associations to make, this would be a great place to put them!
  * ex. if we had another model called BlogPost, we might say:
@@ -19,5 +22,7 @@ const Product = require('./product')
  */
 module.exports = {
   User,
-  Product
+  Product,
+  Order,
+  Order_Product
 }
