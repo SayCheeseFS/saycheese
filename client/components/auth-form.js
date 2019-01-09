@@ -10,26 +10,41 @@ const AuthForm = props => {
   const {name, displayName, handleSubmit, error} = props
 
   return (
-    <div>
-      <form onSubmit={handleSubmit} name={name}>
-        <div>
-          <label htmlFor="email">
-            <small>Email</small>
-          </label>
-          <input name="email" type="text" />
+    <div className="ui middle aligned center aligned grid">
+      <div className="column">
+        <h2 className="ui teal image header">
+          <div className="content">{displayName} to your account</div>
+        </h2>
+        <form className="ui large form" onSubmit={handleSubmit} name={name}>
+          <div className="ui stacked secondary segment">
+            <label htmlFor="email">
+              <small>Email</small>
+            </label>
+            <div className="field">
+              <input name="email" type="text" />
+            </div>
+            <label htmlFor="password">
+              <small>Password</small>
+            </label>
+            <div className="field">
+              <input name="password" type="password" />
+            </div>
+            <button className="ui field fluid teal submit button" type="submit">
+              {displayName}
+            </button>
+            {error &&
+              error.response && (
+                <div className="ui error message"> {error.response.data} </div>
+              )}
+          </div>
+        </form>
+        <div className="ui message">
+          <a className="ui google plus button" href="/auth/google">
+            <i className="google icon" />
+            {displayName} with Google
+          </a>
         </div>
-        <div>
-          <label htmlFor="password">
-            <small>Password</small>
-          </label>
-          <input name="password" type="password" />
-        </div>
-        <div>
-          <button type="submit">{displayName}</button>
-        </div>
-        {error && error.response && <div> {error.response.data} </div>}
-      </form>
-      <a href="/auth/google">{displayName} with Google</a>
+      </div>
     </div>
   )
 }
