@@ -45,7 +45,7 @@ module.exports = [
     name: 'Nikon AF-S NIKKOR 24-70mm f/2.8E ED VR Lens',
     description:
       'F-Mount Lens/FX Format; Aperture Range: f/2.8 to f/22; ASP/ED, AS, ED, and HRI Elements; Nano Crystal & Super Integrated Coatings; Fluorine Coated Front and Rear Elements; Silent Wave Motor AF System; VR Image Stabilization; Electromagnetic Diaphragm Mechanism; Rounded 9-Blade Diaphragm',
-    imageUrl: ['Lens5-0.jpg', 'Lens5-1.jpg', 'Lens5-2.jpg', 'Lens5-3.jpg'],
+    imageUrl: 'Lens5-0.jpg',
     price: 129999,
     quantity: 25,
     brand: 'Nikon',
@@ -65,7 +65,7 @@ module.exports = [
     name: 'Ruggard Thunderhead 35 DSLR & Laptop Backpack (Black)',
     description:
       'For DSLR, 70-200mm, 3 Lenses, Flash; Dedicated Compartment for 13" Laptop; Three Front Zippered Pockets; Full-Front Access to Main Compartment; Padded Touch-Fastened Dividers; Exterior Side Mesh Pockets; Side Tripod Attachment; Water-Repellent Exterior; Removable Rain Cover; Security Whistle',
-    imageUrl: ['Bag7-0.jpg', 'Bag7-1.jpg', 'Bag7-2.jpg', 'Bag7-3.jpg'],
+    imageUrl: 'Bag7-0.jpg',
     price: 9999,
     quantity: 12,
     brand: 'Ruggard',
@@ -74,7 +74,7 @@ module.exports = [
   {
     name: 'Canon LC-E5 Compact Battery Charger',
     description: 'Charges Canon LP-E5 Battery Pack; Plug Folds Flat for Travel',
-    imageUrl: ['Charger8-0.jpg', 'Charger8-1.jpg'],
+    imageUrl: 'Charger8-0.jpg',
     price: 4999,
     quantity: 4,
     brand: 'Canon',
