@@ -28,9 +28,9 @@ const addProductToCart = product => ({
  */
 
 // get all products thunk
-export const setProductToCart = (userId, productId) => async dispatch => {
+export const setProductToCart = productId => async dispatch => {
   try {
-    const res = await axios.post(`/api/users/${userId}/cart`, {productId})
+    const res = await axios.post(`/api/users/cart`, {productId})
     dispatch(addProductToCart(res.data))
   } catch (err) {
     console.error(err)
