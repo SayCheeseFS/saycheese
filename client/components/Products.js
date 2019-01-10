@@ -2,11 +2,14 @@ import React from 'react'
 import {Link} from 'react-router-dom'
 import {connect} from 'react-redux'
 import {fetchAllProducts} from '../store/product'
+import ButtonCart from './Button_Cart'
+import {setProductToCart} from '../store'
 
 class Products extends React.Component {
   componentDidMount() {
     this.props.fetchAllProducts()
   }
+
   render() {
     return (
       <div className="ui link cards">
@@ -25,7 +28,10 @@ class Products extends React.Component {
                 </div>
               </Link>
               <div className="extra content">
-                <button className="ui button">Add To Cart</button>
+                <ButtonCart
+                  productId={product.id}
+                  addProduct={this.props.setProductToCart}
+                />
               </div>
             </div>
           )
@@ -38,7 +44,8 @@ class Products extends React.Component {
 const mapStateToProps = state => ({products: state.inventory.products})
 const mapDispatchToProps = dispatch => {
   return {
-    fetchAllProducts: () => dispatch(fetchAllProducts())
+    fetchAllProducts: () => dispatch(fetchAllProducts()),
+    setProductToCart: productId => dispatch(setProductToCart(productId))
   }
 }
 
