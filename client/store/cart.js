@@ -12,7 +12,7 @@ const ADD_PRODUCT_TO_CART = 'ADD_PRODUCT_TO_CART'
  * INITIAL STATE
  */
 const defaultCart = {
-  cart: []
+  cart: {}
 }
 
 /**

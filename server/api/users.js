@@ -24,7 +24,7 @@ router.post('/cart', async (req, res, next) => {
         price: newItem.price
       }
     })
-    res.send(cart)
+    res.send(cart[0])
   } catch (err) {
     next(err)
   }
