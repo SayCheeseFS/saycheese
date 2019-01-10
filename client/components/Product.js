@@ -1,10 +1,10 @@
 import React from 'react'
 import {connect} from 'react-redux'
-import {fetchSingleProduct} from '../store'
+import {fetchSingleProduct, setProductToCart} from '../store'
+import ButtonCart from './Button_Cart'
 
 class Product extends React.Component {
   componentDidMount() {
-    // console.log(this.props, this.props.match)
     this.props.fetchSingleProduct(this.props.match.params.id)
   }
   render() {
@@ -17,7 +17,10 @@ class Product extends React.Component {
         <h4>{product.description}</h4>
         <h4>Rating: {product.rating}</h4>
         <h4>In Stock</h4>
-        <button type="submit">Add To Cart</button>
+        <ButtonCart
+          productId={product.id}
+          addProduct={this.props.setProductToCart}
+        />
       </div>
     )
   }
@@ -28,7 +31,8 @@ const mapDispatchToProps = dispatch => {
   return {
     fetchSingleProduct: id => {
       dispatch(fetchSingleProduct(id))
-    }
+    },
+    setProductToCart: productId => dispatch(setProductToCart(productId))
   }
 }
 
