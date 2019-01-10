@@ -9,9 +9,15 @@ const Navbar = ({handleClick, isLoggedIn}) => (
     <h1>
       <i className="camera retro icon" />
     </h1>
+
     {isLoggedIn ? (
       <div className="right menu">
         {/* The navbar will show these links after you log in */}
+        <Link to="/cart">
+          <h1>
+            <i className="shopping cart icon" />
+          </h1>
+        </Link>
         <Link to="/home">Home</Link>
         <div href="#" className="item" onClick={handleClick}>
           Logout
@@ -20,6 +26,11 @@ const Navbar = ({handleClick, isLoggedIn}) => (
     ) : (
       <div className="right menu">
         {/* The navbar will show these links before you log in */}
+        <Link to="/cart">
+          <h1>
+            <i className="shopping cart icon blue" />
+          </h1>
+        </Link>
         <Link to="/login">
           <div className="item">Login</div>
         </Link>
