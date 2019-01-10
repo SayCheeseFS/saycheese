@@ -4,7 +4,7 @@ import history from '../history'
 /**
  * ACTION TYPES
  */
-const ADD_PRODUCT = 'ADD_PRODUCT'
+const ADD_PRODUCT_TO_CART = 'ADD_PRODUCT_TO_CART'
 // const GET_CART = 'GET_CART'
 // const UPDATE_CART = 'UPDATE_CART'
 
@@ -18,7 +18,10 @@ const defaultCart = {
 /**
  * ACTION CREATORS
  */
-const addProduct = product => ({type: ADD_PRODUCT, payload: product})
+const addProductToCart = product => ({
+  type: ADD_PRODUCT_TO_CART,
+  payload: product
+})
 
 /**
  * THUNK CREATORS
@@ -28,7 +31,7 @@ const addProduct = product => ({type: ADD_PRODUCT, payload: product})
 export const setProductToCart = (userId, productId) => async dispatch => {
   try {
     const res = await axios.post(`/api/users/${userId}/cart`, {productId})
-    dispatch(addProduct(res.data))
+    dispatch(addProductToCart(res.data))
   } catch (err) {
     console.error(err)
   }
@@ -39,7 +42,7 @@ export const setProductToCart = (userId, productId) => async dispatch => {
  */
 export default function(state = defaultCart, action) {
   switch (action.type) {
-    case ADD_PRODUCT:
+    case ADD_PRODUCT_TO_CART:
       return {...state, cart: action.payload}
     default:
       return state
