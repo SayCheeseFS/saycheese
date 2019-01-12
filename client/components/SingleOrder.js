@@ -10,21 +10,27 @@ class SingleOrder extends React.Component {
   }
   render() {
     const cart = this.props.cart
+    let total = 0
     return (
       <div id="current-order">
-        {cart.products.map(product => (
-          <ProductLine
-            key={product.id}
-            product={product}
-            deleteProductFromCart={this.props.deleteProductFromCart}
-            updateProductQuantity={e =>
-              this.props.updateProductQuantity({
-                productId: product.id,
-                quantity: e.target.value
-              })
-            }
-          />
-        ))}
+        <p>Your cart</p>
+        {cart.products.map(product => {
+          total += product.price / 100 * product.quantity
+          return (
+            <ProductLine
+              key={product.id}
+              product={product}
+              deleteProductFromCart={this.props.deleteProductFromCart}
+              updateProductQuantity={e =>
+                this.props.updateProductQuantity({
+                  productId: product.id,
+                  quantity: e.target.value
+                })
+              }
+            />
+          )
+        })}
+        <p>Total: ${total}</p>
       </div>
     )
   }
