@@ -19,3 +19,18 @@ form div {
   margin: 1em;
   display: inline-block;
 }
+
+.quantity-box {
+  max-width: 50px;
+}
+
+.current-order-line {
+  max-width: 800px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.description {
+  margin-left: 20px;
+  margin-right: 20px;
+}
