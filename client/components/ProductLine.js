@@ -5,7 +5,6 @@ const ProductLine = props => {
   const {product, deleteProductFromCart, updateProductQuantity} = props
   return (
     <div className="current-order-line">
-      <div>Your cart</div>
       <div className="ui items">
         <div className="item">
           <div className="ui tiny image">
