@@ -7,7 +7,7 @@ import history from '../history'
 const ADD_PRODUCT_TO_CART = 'ADD_PRODUCT_TO_CART'
 const GET_CART = 'GET_CART'
 const DELETE_PRODUCT_FROM_CART = 'DELETE_PRODUCT_FROM_CART'
-// const UPDATE_CART = 'UPDATE_CART'
+const UPDATE_PRODUCT_IN_CART = 'UPDATE_PRODUCT_IN_CART'
 
 /**
  * INITIAL STATE
@@ -33,6 +33,11 @@ const getCart = cart => ({
 
 const deleteProductFromCart = cart => ({
   type: DELETE_PRODUCT_FROM_CART,
+  payload: cart
+})
+
+const updateProductInCart = cart => ({
+  type: UPDATE_PRODUCT_IN_CART,
   payload: cart
 })
 
@@ -63,8 +68,21 @@ export const setCart = () => async dispatch => {
 // delete Product from cart thunk
 export const setProductOnCart = productId => async dispatch => {
   try {
-    const res = await axios.delete(`api/users/cart/${productId}`)
+    const res = await axios.delete(`/api/users/cart/${productId}`)
     dispatch(deleteProductFromCart(res.data))
+  } catch (err) {
+    console.log(err)
+  }
+}
+
+// update Product quantity from the cart thunk
+export const updateProductQuantity = (
+  productId,
+  quantity
+) => async dispatch => {
+  try {
+    const res = await axios.put(`/api/users/cart/`, {productId, quantity})
+    dispatch(updateProductInCart(res.data))
   } catch (err) {
     console.log(err)
   }
@@ -80,6 +98,8 @@ export default function(state = defaultCart, action) {
     case GET_CART:
       return {...state, cart: action.payload}
     case DELETE_PRODUCT_FROM_CART:
+      return {...state, cart: action.payload}
+    case UPDATE_PRODUCT_IN_CART:
       return {...state, cart: action.payload}
     default:
       return state
