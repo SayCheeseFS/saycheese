@@ -29,3 +29,38 @@ router.post('/cart', async (req, res, next) => {
     next(err)
   }
 })
+
+router.get('/cart', async (req, res, next) => {
+  if (req.user) {
+    try {
+      let user = req.user
+      let cart = await Order.findAll({
+        where: {isCart: true, userId: user.id},
+        include: [{model: Product}]
+      })
+      res.json(cart)
+    } catch (err) {
+      next(err)
+    }
+  } else {
+    res.send({})
+  }
+})
+
+router.put('/cart', async (req, res, next) => {
+  try {
+    let user = req.user
+    let productId = req.body.productId
+    console.log(req.body)
+    const order = await Order.findAll({where: {isCart: true, userId: user.id}})
+    const cart = await Order_Product.update(
+      {quantity: req.body.quantity},
+      {
+        where: {productId: productId, orderId: order[0].id}
+      }
+    )
+    res.json(cart)
+  } catch (err) {
+    next(err)
+  }
+})
