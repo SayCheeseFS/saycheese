@@ -22,7 +22,7 @@ const ProductLine = props => {
               id="quantity"
               name="quantity"
               max="10"
-              value={product.quantity}
+              value={product.order_product.quantity}
               onChange={updateProductQuantity}
             />
           </div>
