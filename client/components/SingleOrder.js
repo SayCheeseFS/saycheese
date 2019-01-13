@@ -1,8 +1,7 @@
 import React from 'react'
 import {connect} from 'react-redux'
-import {setCart, deleteProductFromCart, updateProductQuantity} from '../store'
+import {setCart, setProductOnCart, updateProductQuantity} from '../store'
 import ProductLine from './ProductLine'
-import Products from './Products'
 
 class SingleOrder extends React.Component {
   componentDidMount() {
@@ -10,12 +9,14 @@ class SingleOrder extends React.Component {
   }
   render() {
     const cart = this.props.cart
+    console.log(cart)
+    if (!cart) return null
     let total = 0
     return (
       <div id="current-order">
         <p>Your cart</p>
         {cart.products.map(product => {
-          total += product.price / 100 * product.order_product.quantity
+          total += product.price * product.order_product.quantity
           return (
             <ProductLine
               key={product.id}
@@ -30,7 +31,7 @@ class SingleOrder extends React.Component {
             />
           )
         })}
-        <p>Total: ${total}</p>
+        <p>Total: ${total / 100}</p>
       </div>
     )
   }
@@ -48,7 +49,7 @@ const mapDispatchToProps = dispatch => {
       dispatch(setCart())
     },
     deleteProductFromCart: id => {
-      dispatch(deleteProductFromCart(id))
+      dispatch(setProductOnCart(id))
     },
     updateProductQuantity: quantity => {
       dispatch(updateProductQuantity(quantity))
