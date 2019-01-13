@@ -15,7 +15,7 @@ class SingleOrder extends React.Component {
       <div id="current-order">
         <p>Your cart</p>
         {cart.products.map(product => {
-          total += product.price / 100 * product.quantity
+          total += product.price / 100 * product.order_product.quantity
           return (
             <ProductLine
               key={product.id}
