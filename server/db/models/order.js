@@ -6,6 +6,9 @@ const Order = db.define('order', {
     type: Sequelize.BOOLEAN,
     defaultValue: true
   },
+  shippingAddress: {
+    type: Sequelize.STRING
+  },
   shipDate: {
     type: Sequelize.DATE,
     defaultValue: null
