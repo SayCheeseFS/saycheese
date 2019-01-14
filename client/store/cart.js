@@ -8,6 +8,7 @@ const ADD_PRODUCT_TO_CART = 'ADD_PRODUCT_TO_CART'
 const GET_CART = 'GET_CART'
 const DELETE_PRODUCT_FROM_CART = 'DELETE_PRODUCT_FROM_CART'
 const UPDATE_PRODUCT_IN_CART = 'UPDATE_PRODUCT_IN_CART'
+const CHECKOUT = 'CHECKOUT'
 
 /**
  * INITIAL STATE
@@ -15,7 +16,8 @@ const UPDATE_PRODUCT_IN_CART = 'UPDATE_PRODUCT_IN_CART'
 const defaultCart = {
   cart: {
     products: []
-  }
+  },
+  order: {}
 }
 
 /**
@@ -39,6 +41,11 @@ const deleteProductFromCart = cart => ({
 const updateProductInCart = cart => ({
   type: UPDATE_PRODUCT_IN_CART,
   payload: cart
+})
+
+const checkout = order => ({
+  type: CHECKOUT,
+  payload: order
 })
 
 /**
@@ -88,6 +95,19 @@ export const updateProductQuantity = (
   }
 }
 
+export const getCheckout = (address, userId, email) => async dispatch => {
+  try {
+    const res = await axios.put(`/api/users/${userId}/checkout`, {
+      address,
+      userId,
+      email
+    })
+    dispatch(checkout(res.data))
+  } catch (err) {
+    console.log(err)
+  }
+}
+
 /**
  * REDUCER
  */
@@ -101,6 +121,8 @@ export default function(state = defaultCart, action) {
       return {...state, cart: action.payload}
     case UPDATE_PRODUCT_IN_CART:
       return {...state, cart: action.payload}
+    case CHECKOUT:
+      return {...state, cart: defaultCart, order: action.payload}
     default:
       return state
   }
