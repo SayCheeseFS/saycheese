@@ -4,9 +4,9 @@ const Order = require('./order')
 const Order_Product = require('./order_product')
 
 Product.belongsToMany(Order, {through: Order_Product})
+Order.belongsToMany(Product, {through: Order_Product})
 Order.belongsTo(User)
 User.hasMany(Order)
-Order.belongsToMany(Product, {through: Order_Product})
 /**
  * If we had any associations to make, this would be a great place to put them!
  * ex. if we had another model called BlogPost, we might say:

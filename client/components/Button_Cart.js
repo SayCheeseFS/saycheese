@@ -1,10 +1,10 @@
-import React from 'react'
+import React from 'react';
 
 /**
  * COMPONENT
  */
 const ButtonCart = props => {
-  const {productId, addProduct} = props
+  const {productId, addProduct} = props;
 
   return (
     <div className="checkout-button-container">
@@ -12,13 +12,13 @@ const ButtonCart = props => {
         className="ui button"
         type="submit"
         onClick={() => {
-          addProduct(productId)
+          addProduct(productId);
         }}
       >
         Add to Cart
       </button>
     </div>
-  )
-}
+  );
+};
 
-export default ButtonCart
+export default ButtonCart;

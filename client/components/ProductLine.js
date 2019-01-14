@@ -1,8 +1,8 @@
-import React from 'react'
-import {Link} from 'react-router-dom'
+import React from 'react';
+import {Link} from 'react-router-dom';
 
 const ProductLine = props => {
-  const {product, deleteProductFromCart, updateProductQuantity} = props
+  const {product, deleteProductFromCart, updateProductQuantity} = props;
   return (
     <div className="current-order-line">
       <div className="ui items">
@@ -39,7 +39,7 @@ const ProductLine = props => {
         </div>
       </div>
     </div>
-  )
-}
+  );
+};
 
-export default ProductLine
+export default ProductLine;
