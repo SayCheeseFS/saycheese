@@ -2,6 +2,7 @@ import React from 'react'
 import {connect} from 'react-redux'
 import {setCart, setProductOnCart, updateProductQuantity} from '../store'
 import ProductLine from './ProductLine'
+import StripeBtn from './StripeBtn'
 
 class SingleOrder extends React.Component {
   componentDidMount() {
@@ -29,6 +30,9 @@ class SingleOrder extends React.Component {
           )
         })}
         <p>Total: ${total / 100}</p>
+        <div>
+          <StripeBtn total={total} />
+        </div>
       </div>
     )
   }
