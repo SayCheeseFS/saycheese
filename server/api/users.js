@@ -27,7 +27,6 @@ router.post('/cart', async (req, res, next) => {
       }
     })
     cart = await Order.findById(orderId, {include: [{model: Product}]})
-    console.log(cart.id)
     res.send(cart)
   } catch (err) {
     next(err)
@@ -43,7 +42,6 @@ router.get('/cart', async (req, res, next) => {
         where: {isCart: true, userId: user.id},
         include: [{model: Product}]
       })
-      console.log(cart[0].id, cart[0].products)
       res.json(cart[0])
     } catch (err) {
       next(err)
@@ -59,13 +57,17 @@ router.put('/cart', async (req, res, next) => {
     let user = req.user
     let productId = req.body.productId
     const order = await Order.findAll({where: {isCart: true, userId: user.id}})
-    const cart = await Order_Product.update(
+    let cart = await Order_Product.update(
       {quantity: req.body.quantity},
       {
         where: {productId: productId, orderId: order[0].id}
       }
     )
-    res.json(cart)
+    cart = await Order.findAll({
+      where: {isCart: true, userId: user.id},
+      include: [{model: Product}]
+    })
+    res.json(cart[0])
   } catch (err) {
     next(err)
   }

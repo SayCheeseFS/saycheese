@@ -23,10 +23,7 @@ class SingleOrder extends React.Component {
               product={product}
               deleteProductFromCart={this.props.deleteProductFromCart}
               updateProductQuantity={e =>
-                this.props.updateProductQuantity({
-                  productId: product.id,
-                  quantity: e.target.value
-                })
+                this.props.updateProductQuantity(product.id, e.target.value)
               }
             />
           )
@@ -51,8 +48,8 @@ const mapDispatchToProps = dispatch => {
     deleteProductFromCart: id => {
       dispatch(setProductOnCart(id))
     },
-    updateProductQuantity: quantity => {
-      dispatch(updateProductQuantity(quantity))
+    updateProductQuantity: (productId, quantity) => {
+      dispatch(updateProductQuantity(productId, quantity))
     }
   }
 }
