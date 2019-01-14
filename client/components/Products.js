@@ -1,13 +1,13 @@
-import React from 'react'
-import {Link} from 'react-router-dom'
-import {connect} from 'react-redux'
-import {fetchAllProducts} from '../store/product'
-import ButtonCart from './Button_Cart'
-import {setProductToCart} from '../store'
+import React from 'react';
+import {Link} from 'react-router-dom';
+import {connect} from 'react-redux';
+import {fetchAllProducts} from '../store/product';
+import ButtonCart from './Button_Cart';
+import {setProductToCart} from '../store';
 
 class Products extends React.Component {
   componentDidMount() {
-    this.props.fetchAllProducts()
+    this.props.fetchAllProducts();
   }
 
   render() {
@@ -34,19 +34,19 @@ class Products extends React.Component {
                 />
               </div>
             </div>
-          )
+          );
         })}
       </div>
-    )
+    );
   }
 }
 
-const mapStateToProps = state => ({products: state.inventory.products})
+const mapStateToProps = state => ({products: state.inventory.products});
 const mapDispatchToProps = dispatch => {
   return {
     fetchAllProducts: () => dispatch(fetchAllProducts()),
     setProductToCart: productId => dispatch(setProductToCart(productId))
-  }
-}
+  };
+};
 
-export default connect(mapStateToProps, mapDispatchToProps)(Products)
+export default connect(mapStateToProps, mapDispatchToProps)(Products);
