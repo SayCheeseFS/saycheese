@@ -4,7 +4,6 @@ module.exports = router;
 
 // create the cart for current user
 router.post('/cart', async (req, res, next) => {
-  console.log(req.user);
   let user = {};
   try {
     // check if there is a user
@@ -114,15 +113,19 @@ router.put('/:userId/checkout', async (req, res, next) => {
   // });
   if (req.user.id === Number(req.params.userId)) {
     try {
-      const updatedOrder = await Order.update(
-        {shippingAddress: address, isCart: false},
-        {where: {isCart: true, userId: userId}}
-      );
+      const findOrder = await Order.findOne({
+        where: {isCart: true, userId: userId}
+      });
+      await findOrder.update({shippingAddress: address, isCart: false});
       const userEmailUpdate = await User.update(
         {email: email},
         {where: {id: userId}}
       );
-      console.log(updatedOrder);
+
+      const submittedOrder = await Order.findById(findOrder.id, {
+        include: [{model: Product}]
+      });
+      res.json(submittedOrder);
     } catch (error) {
       next(error);
     }
