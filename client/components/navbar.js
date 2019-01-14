@@ -16,7 +16,7 @@ const Navbar = ({handleClick, isLoggedIn, cart}) => {
         <Link to="/cart" className="item">
           <div>
             <i className="ui large middle aligned shopping cart icon" />
-            {cart.products && (
+            {cart.products.length > 0 && (
               <a className="ui mini red circular label">
                 {cart.products.length}
               </a>
