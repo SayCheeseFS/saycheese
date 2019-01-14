@@ -101,16 +101,9 @@ router.delete('/cart/:productId', async (req, res, next) => {
 
 //checkout route and update cart to order (setting isCart to false)
 router.put('/:userId/checkout', async (req, res, next) => {
-  // console.log('req.user:', req.user);
-  // console.log('req.params.userId:', req.params.userId);
   const {address, email} = req.body;
   const userId = req.params.userId;
 
-  // const orderRecord = await Order.find1
-  //check if the user has a cart and is authorized to place the order
-  // const findCart = await Order.findOne({
-  //   where: {isCart: true, userId: userId}
-  // });
   if (req.user.id === Number(req.params.userId)) {
     try {
       const findOrder = await Order.findOne({
