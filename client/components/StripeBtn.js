@@ -1,25 +1,25 @@
-import React from 'react'
-import StripeCheckout from 'react-stripe-checkout'
-import axios from 'axios'
-import {stripePublishableKey} from '../../secrets'
+import React from 'react';
+import StripeCheckout from 'react-stripe-checkout';
+import axios from 'axios';
+import {stripePublishableKey} from '../../secrets';
 const stripeBtn = props => {
-  const publishableKey = stripePublishableKey
+  const publishableKey = stripePublishableKey;
 
   const onToken = token => {
     const body = {
       amount: props.total,
       token: token
-    }
+    };
     axios
       .post('http://localhost:8080/payment', body)
       .then(response => {
-        alert('Payment Success')
+        alert('Payment Success');
       })
       .catch(error => {
-        console.log('Payment Error: ', error)
-        alert('Payment Error')
-      })
-  }
+        console.log('Payment Error: ', error);
+        alert('Payment Error');
+      });
+  };
   return (
     <StripeCheckout
       label="Pay With Card" //Component button text
@@ -30,6 +30,6 @@ const stripeBtn = props => {
       stripeKey={publishableKey}
       billingAddress={false}
     />
-  )
-}
-export default stripeBtn
+  );
+};
+export default stripeBtn;
