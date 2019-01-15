@@ -1,15 +1,18 @@
 import React from 'react';
 import {connect} from 'react-redux';
-import {fetchUser} from '../store';
+import {fetchOrders} from '../store';
 import OrderItem from './OrderItem';
 
 class AllOrders extends React.Component {
   componentDidMount() {
-    this.props.fetchUser(this.props.user.id);
+    console.log('component did mount');
+    console.log(this.props);
+    this.props.fetchOrders(this.props.user.id);
   }
 
   render() {
-    const {orders} = this.props.user;
+    const orders = this.props.orders;
+    console.log(orders);
     return (
       <div id="all-orders">
         {orders.map(order => <OrderItem order={order} key={order.id} />)}
@@ -19,14 +22,16 @@ class AllOrders extends React.Component {
 }
 
 const mapStateToProps = state => {
+  console.log('in map state', state.user);
   return {
+    orders: state.orderObj.orders,
     user: state.user
   };
 };
 
 const mapDispatchToProps = dispatch => {
   return {
-    fetchUser: userId => dispatch(fetchUser(userId))
+    fetchOrders: userId => dispatch(fetchOrders(userId))
   };
 };
 

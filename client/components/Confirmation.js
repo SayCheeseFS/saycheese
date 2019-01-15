@@ -1,10 +1,12 @@
 import React from 'react';
 import {Link} from 'react-router-dom';
+import {connect} from 'react-redux';
 
 class Confirmation extends React.Component {
   render() {
     return (
       <div>
+
         <div className="ui card align centered">
           <div className="content">
             <div className="header">
@@ -25,4 +27,9 @@ class Confirmation extends React.Component {
   }
 }
 
-export default Confirmation;
+const mapStateToProps = state => {
+  return {
+    user: state.user
+  };
+};
+export default connect(mapStateToProps, null)(Confirmation);

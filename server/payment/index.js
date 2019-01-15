@@ -15,7 +15,6 @@ const stripeChargeCallback = res => (stripeErr, stripeRes) => {
 };
 
 router.get('/', async (req, res) => {
-
   res.send({
     message: 'Hello Stripe checkout server!',
     timestamp: new Date().toISOString()
@@ -26,7 +25,6 @@ router.post('/', async (req, res) => {
   const card = req.body.token.card;
   const userId = req.params.userId;
   const email = req.body.token.email;
-
 
   const body = {
     source: req.body.token.id,

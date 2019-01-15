@@ -23,6 +23,7 @@ const setOrders = orders => ({type: SET_ORDERS, orders});
 export const fetchOrders = userId => async dispatch => {
   try {
     const res = await axios.get(`/api/users/${userId}`);
+    console.log('in thunk', res.data);
     dispatch(setOrders(res.data));
   } catch (err) {
     console.error(err);
