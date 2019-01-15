@@ -8,7 +8,7 @@ const SET_ORDERS = 'SET_ORDERS';
 /**
  * INITIAL STATE
  */
-const initialState = [];
+const initialState = {orders: []};
 
 /**
  * ACTION CREATORS
@@ -35,7 +35,7 @@ export const fetchOrders = userId => async dispatch => {
 export default function(state = initialState, action) {
   switch (action.type) {
     case SET_ORDERS:
-      return action.orders;
+      return {...state, orders: action.orders};
     default:
       return state;
   }
