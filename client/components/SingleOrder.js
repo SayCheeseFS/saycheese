@@ -14,24 +14,26 @@ class SingleOrder extends React.Component {
     if (!cart) return null;
     let total = 0;
     return (
-      <div id="current-order">
-        <p>Your cart</p>
-        {cart.products.map(product => {
-          total += product.price * product.order_product.quantity;
-          return (
-            <LineItem
-              key={product.id}
-              product={product}
-              deleteProductFromCart={this.props.deleteProductFromCart}
-              updateProductQuantity={e =>
-                this.props.updateProductQuantity(product.id, e.target.value)
-              }
-            />
-          );
-        })}
-        <p>Total: ${total / 100}</p>
-        <div>
-          <StripeBtn total={total} />
+      <div className="ui segment centered">
+        <div id="current-order">
+          <h2>Your cart</h2>
+          {cart.products.map(product => {
+            total += product.price * product.order_product.quantity;
+            return (
+              <LineItem
+                key={product.id}
+                product={product}
+                deleteProductFromCart={this.props.deleteProductFromCart}
+                updateProductQuantity={e =>
+                  this.props.updateProductQuantity(product.id, e.target.value)
+                }
+              />
+            );
+          })}
+          <h2>Total: ${total / 100}</h2>
+          <div>
+            <StripeBtn total={total} />
+          </div>
         </div>
       </div>
     );

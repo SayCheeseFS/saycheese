@@ -3,18 +3,25 @@ import {Link} from 'react-router-dom';
 import {connect} from 'react-redux';
 
 class Confirmation extends React.Component {
-  componentDidUpdate() {}
-
   render() {
     return (
       <div>
-        <h2>Your Order Has Been Placed!</h2>
-        <Link to="/">
-          <button type="submit">Continue Shopping</button>
-        </Link>
-        <Link to={`/users/${user.id}`}>
-          <p>Go to profile page</p>
-        </Link>
+
+        <div className="ui card align centered">
+          <div className="content">
+            <div className="header">
+              <h2>Thank You.</h2>
+            </div>
+          </div>
+          <div className="content">
+            <h2 className="ui sub header">Your Order Has Been Placed :)</h2>
+          </div>
+          <div className="extra content">
+            <Link to="/">
+              <button className="ui button">Continue Shopping</button>
+            </Link>
+          </div>
+        </div>
       </div>
     );
   }

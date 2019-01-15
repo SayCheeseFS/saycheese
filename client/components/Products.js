@@ -12,7 +12,7 @@ class Products extends React.Component {
 
   render() {
     return (
-      <div className="ui link cards">
+      <div className="ui link cards centered">
         {this.props.products.map(product => {
           return (
             <div className="card" key={product.id}>

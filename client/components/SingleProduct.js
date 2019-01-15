@@ -10,13 +10,14 @@ class Product extends React.Component {
   render() {
     const product = this.props.product;
     return (
-      <div>
-        <img src={`/images/${product.imageUrl}`} />
+      <div className="ui segment">
+        <img
+          className="ui centered medium image"
+          src={`/images/${product.imageUrl}`}
+        />
         <h1>{product.name}</h1>
-        <h3>{product.price}</h3>
+        <h3>Price: ${product.price / 100}</h3>
         <h4>{product.description}</h4>
-        <h4>Rating: {product.rating}</h4>
-        <h4>In Stock</h4>
         <ButtonCart
           productId={product.id}
           addProduct={this.props.setProductToCart}
