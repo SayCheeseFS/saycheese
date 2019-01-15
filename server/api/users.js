@@ -139,7 +139,7 @@ router.get('/:userId', async (req, res, next) => {
           include: {model: Product}
         }
       });
-      res.json(user);
+      res.json(user.orders);
     } catch (err) {
       next(err);
     }
