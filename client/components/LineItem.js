@@ -1,7 +1,7 @@
 import React from 'react';
 import {Link} from 'react-router-dom';
 
-const ProductLine = props => {
+const LineItem = props => {
   const {product, deleteProductFromCart, updateProductQuantity} = props;
   return (
     <div className="current-order-line">
@@ -42,4 +42,4 @@ const ProductLine = props => {
   );
 };
 
-export default ProductLine;
+export default LineItem;
