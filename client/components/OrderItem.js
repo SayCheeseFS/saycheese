@@ -7,9 +7,7 @@ const OrderItem = props => {
     <div className="ui items">
       <div className="item">
         <div className="content">
-          <Link to={`/orders/${order.id}`} className="header">
-            Order number #{order.id}
-          </Link>
+          Order number #{order.id}
           <div className="meta">
             <span className="number">Placed on {order.createdAt}</span>
           </div>
