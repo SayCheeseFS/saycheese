@@ -1,5 +1,5 @@
 const router = require('express').Router();
-const {stripeSecretKey} = process.env;
+const stripeSecretKey = process.env.SECRET_KEY;
 // require('../../secrets');
 
 const {User, Order, Product} = require('../db/models');

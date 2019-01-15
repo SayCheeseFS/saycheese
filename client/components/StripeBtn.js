@@ -2,7 +2,7 @@ import React from 'react';
 import StripeCheckout from 'react-stripe-checkout';
 import axios from 'axios';
 // import {stripePublishableKey} from '../../secrets';
-const {stripePublishableKey} = process.env;
+const stripePublishableKey = process.env.PUBLISHABLE_KEY;
 import history from '../history';
 
 const stripeBtn = props => {
