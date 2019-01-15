@@ -158,6 +158,6 @@ router.get('/:userId', async (req, res, next) => {
       next(err);
     }
   } else {
-    res.send({products: []});
+    res.send([]);
   }
 });

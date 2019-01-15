@@ -5,12 +5,14 @@ import OrderItem from './OrderItem';
 
 class AllOrders extends React.Component {
   componentDidMount() {
+    console.log('component did mount');
+    console.log(this.props);
     this.props.fetchOrders(this.props.user.id);
   }
 
   render() {
-    const {orders} = this.props;
-    console.log(this.props);
+    const orders = this.props.orders;
+    console.log(orders);
     return (
       <div id="all-orders">
         {orders.map(order => <OrderItem order={order} key={order.id} />)}
@@ -20,8 +22,9 @@ class AllOrders extends React.Component {
 }
 
 const mapStateToProps = state => {
+  console.log('in map state', state.user);
   return {
-    orders: state.orders.orders,
+    orders: state.orderObj.orders,
     user: state.user
   };
 };

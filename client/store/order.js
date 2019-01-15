@@ -8,7 +8,7 @@ const SET_ORDERS = 'SET_ORDERS';
 /**
  * INITIAL STATE
  */
-const initialState = [];
+const initialState = {orders: []};
 
 /**
  * ACTION CREATORS
@@ -23,6 +23,7 @@ const setOrders = orders => ({type: SET_ORDERS, orders});
 export const fetchOrders = userId => async dispatch => {
   try {
     const res = await axios.get(`/api/users/${userId}`);
+    console.log('in thunk', res.data);
     dispatch(setOrders(res.data));
   } catch (err) {
     console.error(err);
@@ -35,7 +36,7 @@ export const fetchOrders = userId => async dispatch => {
 export default function(state = initialState, action) {
   switch (action.type) {
     case SET_ORDERS:
-      return action.orders;
+      return {...state, orders: action.orders};
     default:
       return state;
   }
