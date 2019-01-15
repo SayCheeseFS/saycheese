@@ -56,6 +56,15 @@ export const logout = () => async dispatch => {
   }
 };
 
+export const fetchUser = userId => async dispatch => {
+  try {
+    const user = await axios.get(`/api/users/${userId}`);
+    dispatch(getUser(user.data));
+  } catch (err) {
+    console.error(err);
+  }
+};
+
 /**
  * REDUCER
  */

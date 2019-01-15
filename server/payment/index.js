@@ -1,6 +1,8 @@
 const router = require('express').Router();
 const {stripeSecretKey} = require('../../secrets');
+
 const {User, Order, Product} = require('../db/models');
+
 module.exports = router;
 
 const stripe = require('stripe')(stripeSecretKey);
@@ -11,16 +13,20 @@ const stripeChargeCallback = res => (stripeErr, stripeRes) => {
     res.status(200).send({success: stripeRes});
   }
 };
+
 router.get('/', async (req, res) => {
+
   res.send({
     message: 'Hello Stripe checkout server!',
     timestamp: new Date().toISOString()
   });
 });
+
 router.post('/', async (req, res) => {
   const card = req.body.token.card;
   const userId = req.params.userId;
   const email = req.body.token.email;
+
 
   const body = {
     source: req.body.token.id,
@@ -28,6 +34,7 @@ router.post('/', async (req, res) => {
     currency: 'usd'
   };
   stripe.charges.create(body, stripeChargeCallback(res));
+
   try {
     const findOrder = await Order.findOne({
       where: {isCart: true, userId: req.user.id}

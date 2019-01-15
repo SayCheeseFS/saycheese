@@ -2,7 +2,9 @@ import React from 'react';
 import StripeCheckout from 'react-stripe-checkout';
 import axios from 'axios';
 import {stripePublishableKey} from '../../secrets';
+
 import history from '../history';
+
 
 const stripeBtn = props => {
   const publishableKey = stripePublishableKey;
@@ -15,14 +17,16 @@ const stripeBtn = props => {
     axios
       .post('http://localhost:8080/payment', body)
       .then(response => {
+
         history.push('/cart/confirmation');
+
       })
       .catch(error => {
         console.log('Payment Error: ', error);
         alert('Payment Error');
       });
   };
-  console.log(history);
+
   return (
     <div>
       <StripeCheckout
@@ -35,6 +39,7 @@ const stripeBtn = props => {
         billingAddress={true}
       />
     </div>
+
   );
 };
 export default stripeBtn;
