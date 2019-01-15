@@ -1,9 +1,8 @@
-import React from 'react'
-import {connect} from 'react-redux'
-import {setCart, setProductOnCart, updateProductQuantity} from '../store'
-import ProductLine from './ProductLine'
-import StripeBtn from './StripeBtn'
-
+import React from 'react';
+import {connect} from 'react-redux';
+import {setCart, setProductOnCart, updateProductQuantity} from '../store';
+import ProductLine from './ProductLine';
+import StripeBtn from './StripeBtn';
 
 class SingleOrder extends React.Component {
   componentDidMount() {

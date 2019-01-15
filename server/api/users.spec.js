@@ -25,38 +25,37 @@ describe('User routes', () => {
         .get('/api/users')
         .expect(200);
 
-
-      expect(res.body).to.be.an('array')
-      expect(res.body[0].email).to.be.equal(codysEmail)
-    })
-  }) // end describe('/api/users')
+      expect(res.body).to.be.an('array');
+      expect(res.body[0].email).to.be.equal(codysEmail);
+    });
+  }); // end describe('/api/users')
 
   describe('GET /api/users/:userId', () => {
-    const userEmail = 'user123@mail.com'
-    let userId
+    const userEmail = 'user123@mail.com';
+    let userId;
 
     beforeEach(() => {
       const newUser = User.create({
         email: userEmail
-      })
-      userId = newUser.id
-    })
+      });
+      userId = newUser.id;
+    });
 
     afterEach(() => {
       User.destroy({
         where: {
           id: userId
         }
-      })
-    })
+      });
+    });
 
     it('GET /api/user/:userId', async () => {
       const res = await request(app)
         .get(`/api/users/${userId}`)
-        .expect(200)
+        .expect(200);
 
-      expect(res.body).to.be.an('object')
-      expect(res.body.email).to.be.equal(userEmail)
-    })
-  }) // end describe('GET /api/users/:userId')
-}) // end describe('User routes')
+      expect(res.body).to.be.an('object');
+      expect(res.body.email).to.be.equal(userEmail);
+    });
+  }); // end describe('GET /api/users/:userId')
+}); // end describe('User routes')
