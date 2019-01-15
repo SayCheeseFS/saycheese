@@ -113,7 +113,7 @@ router.delete('/cart/:productId', async (req, res, next) => {
   }
 });
 
-//checkout route and update cart to order (setting isCart to false)
+//create a checkout route and transform cart to order (setting isCart field in database to false)
 router.put('/:userId/checkout', async (req, res, next) => {
   const {address, email} = req.body;
   const userId = req.params.userId;
@@ -139,5 +139,25 @@ router.put('/:userId/checkout', async (req, res, next) => {
   } else {
     const userError = new Error('you are not an authorized user');
     next(userError);
+  }
+});
+
+router.get('/:userId', async (req, res, next) => {
+  if (req.user.id === Number(req.params.userId)) {
+    try {
+      let userId = req.user.id;
+      let user = await User.findById(userId, {
+        include: {
+          model: Order,
+          where: {isCart: false},
+          include: {model: Product}
+        }
+      });
+      res.json(user);
+    } catch (err) {
+      next(err);
+    }
+  } else {
+    res.send({products: []});
   }
 });

@@ -10,7 +10,7 @@ const REMOVE_USER = 'REMOVE_USER';
 /**
  * INITIAL STATE
  */
-const defaultUser = {};
+const defaultUser = {orders: []};
 
 /**
  * ACTION CREATORS
@@ -51,6 +51,15 @@ export const logout = () => async dispatch => {
     await axios.post('/auth/logout');
     dispatch(removeUser());
     history.push('/login');
+  } catch (err) {
+    console.error(err);
+  }
+};
+
+export const fetchUser = userId => async dispatch => {
+  try {
+    const user = await axios.get(`/api/users/${userId}`);
+    dispatch(getUser(user.data));
   } catch (err) {
     console.error(err);
   }
