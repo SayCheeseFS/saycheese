@@ -6,7 +6,6 @@ class Confirmation extends React.Component {
   render() {
     return (
       <div>
-
         <div className="ui card align centered">
           <div className="content">
             <div className="header">
@@ -21,6 +20,11 @@ class Confirmation extends React.Component {
               <button className="ui button">Continue Shopping</button>
             </Link>
           </div>
+        </div>
+        <div className="ui align centered">
+          <Link to={`/users/${this.props.user.id}`}>
+            <p>view previous orders</p>
+          </Link>
         </div>
       </div>
     );

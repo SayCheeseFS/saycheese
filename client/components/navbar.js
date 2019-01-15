@@ -4,7 +4,7 @@ import {connect} from 'react-redux';
 import {Link} from 'react-router-dom';
 import {logout} from '../store';
 
-const Navbar = ({handleClick, isLoggedIn, cart}) => {
+const Navbar = ({handleClick, isLoggedIn, cart, user}) => {
   return (
     <div className="ui menu">
       <Link to="/products" className="header item">
@@ -25,9 +25,14 @@ const Navbar = ({handleClick, isLoggedIn, cart}) => {
           </div>
         </Link>
         {isLoggedIn ? (
-          <Link to="/#" className="item" onClick={handleClick}>
-            <div>Logout</div>
-          </Link>
+          <div className="right menu">
+            <Link to={`/users/${user.id}`} className="header item">
+              <i className="middle aligned user circle icon" />
+            </Link>
+            <Link to="/#" className="item" onClick={handleClick}>
+              <div>Logout</div>
+            </Link>
+          </div>
         ) : (
           <div className="right menu">
             {/* The navbar will show these links before you log in */}
@@ -50,7 +55,8 @@ const Navbar = ({handleClick, isLoggedIn, cart}) => {
 const mapState = state => {
   return {
     isLoggedIn: !!state.user.email,
-    cart: state.cartObj.cart
+    cart: state.cartObj.cart,
+    user: state.user
   };
 };
 
