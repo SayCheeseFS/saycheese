@@ -1,7 +1,7 @@
 import React from 'react';
 import {connect} from 'react-redux';
 import {setCart, setProductOnCart, updateProductQuantity} from '../store';
-import ProductLine from './ProductLine';
+import LineItem from './LineItem';
 import StripeBtn from './StripeBtn';
 
 class SingleOrder extends React.Component {
@@ -19,7 +19,7 @@ class SingleOrder extends React.Component {
         {cart.products.map(product => {
           total += product.price * product.order_product.quantity;
           return (
-            <ProductLine
+            <LineItem
               key={product.id}
               product={product}
               deleteProductFromCart={this.props.deleteProductFromCart}
