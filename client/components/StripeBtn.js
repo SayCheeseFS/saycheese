@@ -1,8 +1,8 @@
 import React from 'react';
 import StripeCheckout from 'react-stripe-checkout';
 import axios from 'axios';
-import {stripePublishableKey} from '../../secrets';
-
+// import {stripePublishableKey} from '../../secrets';
+const {stripePublishableKey} = process.env;
 import history from '../history';
 
 const stripeBtn = props => {
